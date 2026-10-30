@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CORE BREACH — FPS Arcade Educacional</title>
+    <link rel="stylesheet" href="./src/presentation/styles/retro-terminal.css" />
+  </head>
+  <body>
+    <!-- Canvas 3D Babylon.js -->
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- Camada de Interface (HUD) -->
+    <div id="hudLayer">
+      <!-- Painel CPU / ALU / REG -->
+      <div class="hud-top-left">
+        <div>CPU STATUS: RUNNING</div>
+        <div id="hudAluStatus">ALU: READY (XOR)</div>
+        <div id="hudRegStatus">REG_A: 1010 | TARGET: ----</div>
+        <div class="cycle-leds">
+          <span id="stepFetch" class="cycle-step">FETCH</span>
+          <span id="stepDecode" class="cycle-step">DECODE</span>
+          <span id="stepExecute" class="cycle-step">EXECUTE</span>
+          <span id="stepStore" class="cycle-step">STORE</span>
+        </div>
+      </div>
+
+      <!-- Objetivo Central & Distância -->
+      <div class="hud-top-center">
+        <div id="hudObjective">&lt; CORE BREACH: 32m &gt;</div>
+      </div>
+
+      <!-- Score & Conceitos -->
+      <div class="hud-top-right">
+        <div id="hudScore">SCORE: 00000</div>
+        <div id="hudConcepts">CONCEPTS: 0/5 [TAB]</div>
+      </div>
+
+      <!-- Mira Central -->
+      <div class="crosshair">+</div>
+
+      <!-- Painel de Vida e Escudo -->
+      <div class="hud-bottom-left">
+        <div><span id="hudHpVal">100</span> HP</div>
+        <div class="hud-bar"><div id="hudHpBar" class="hud-bar-fill-hp"></div></div>
+        <div style="margin-top: 8px;"><span id="hudShldVal">100</span> SHLD</div>
+        <div class="hud-bar"><div id="hudShldBar" class="hud-bar-fill-shld"></div></div>
+      </div>
+
+      <!-- Visual da Arma 2D -->
+      <div id="weaponViewmodel" class="weapon-viewmodel"></div>
+
+      <!-- Painel de Munição e Pulso -->
+      <div class="hud-bottom-right">
+        <div><span id="hudAmmoVal">99</span> AMMO</div>
+        <div style="font-size: 14px; margin-top: 4px;">PULSE-9 [M1]</div>
+        <div id="hudPulseCooldown" style="font-size: 12px; color: var(--color-electric-cyan); margin-top: 6px;">
+          PULSO XOR: PRONTO [Q]
+        </div>
+      </div>
+
+      <!-- Toast Pedagógico Contextual -->
+      <div id="terminalToast" class="terminal-toast"></div>
+    </div>
+
+    <!-- Modal: Menu Inicial -->
+    <div id="menuModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-title">CORE BREACH</div>
+        <p style="margin-bottom: 20px; color: var(--color-electric-cyan);">
+          RESTAURAÇÃO DO PROCESSADOR CENTRAL
+        </p>
+        <button id="btnNewGame" class="btn-retro">INICIAR PARTIDA</button><br />
+        <button id="btnControls" class="btn-retro">CONTROLES</button>
+      </div>
+    </div>
+
+    <!-- Modal: Debrief (Vitória ou Derrota) -->
+    <div id="debriefModal" class="modal-overlay" style="display: none;">
+      <div class="modal-card">
+        <div id="debriefStatus" class="modal-title">MISSION RESULTS</div>
+        <div id="debriefScore" style="margin: 10px 0;">SCORE: 0</div>
+        <div id="debriefEnemies" style="margin: 10px 0;">ENEMIES DEFEATED: 0</div>
+        <div id="debriefConcepts" style="margin: 10px 0;">CPU CONCEPTS LEARNED: 0/5</div>
+        <p style="margin: 20px 0; color: var(--color-alert-orange);">PRESSIONE [ENTER] PARA REINICIAR</p>
+        <button id="btnRestart" class="btn-retro">REINICIAR</button>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

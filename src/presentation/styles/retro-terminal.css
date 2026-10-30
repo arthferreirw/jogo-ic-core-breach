@@ -1,0 +1,227 @@
+:root {
+  --color-metal-dark: #101820;
+  --color-terminal-green: #39ff88;
+  --color-electric-cyan: #00d9ff;
+  --color-alert-orange: #ff9d36;
+  --color-bg-panel: rgba(16, 24, 32, 0.85);
+  --font-mono: 'Courier New', Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-metal-dark);
+  font-family: var(--font-mono);
+  color: var(--color-terminal-green);
+}
+
+#renderCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+}
+
+/* Camada da Interface (HUD) */
+#hudLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Painéis Superiores */
+.hud-top-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--color-bg-panel);
+  border: 2px solid var(--color-terminal-green);
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.hud-top-center {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-bg-panel);
+  border: 2px solid var(--color-electric-cyan);
+  padding: 8px 18px;
+  font-size: 16px;
+  color: var(--color-electric-cyan);
+  text-align: center;
+}
+
+.hud-top-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--color-bg-panel);
+  border: 2px solid var(--color-electric-cyan);
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+/* Ciclo de Instrução LEDs */
+.cycle-leds {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.cycle-step {
+  padding: 2px 6px;
+  font-size: 11px;
+  border: 1px solid #2a3b4d;
+  color: #555;
+}
+
+.cycle-step.active {
+  border-color: var(--color-terminal-green);
+  color: var(--color-terminal-green);
+  background: rgba(57, 255, 136, 0.2);
+}
+
+/* Mira Central */
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-electric-cyan);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Painéis Inferiores */
+.hud-bottom-left {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: var(--color-bg-panel);
+  border: 2px solid var(--color-terminal-green);
+  padding: 12px 18px;
+  font-size: 18px;
+}
+
+.hud-bar {
+  width: 140px;
+  height: 12px;
+  background: #111;
+  border: 1px solid #333;
+  margin-top: 4px;
+}
+
+.hud-bar-fill-hp {
+  height: 100%;
+  background: var(--color-terminal-green);
+  width: 100%;
+}
+
+.hud-bar-fill-shld {
+  height: 100%;
+  background: var(--color-electric-cyan);
+  width: 100%;
+}
+
+.hud-bottom-right {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: var(--color-bg-panel);
+  border: 2px solid var(--color-alert-orange);
+  padding: 12px 18px;
+  text-align: right;
+  color: var(--color-alert-orange);
+  font-size: 20px;
+}
+
+/* Sprite da Arma 2D */
+.weapon-viewmodel {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+
+/* Terminal Toast Pedagógico */
+.terminal-toast {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(16, 24, 32, 0.95);
+  border: 2px solid var(--color-terminal-green);
+  padding: 10px 20px;
+  max-width: 600px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-terminal-green);
+  box-shadow: 0 0 15px rgba(57, 255, 136, 0.3);
+  display: none;
+}
+
+/* Modais (Menu, Pausa, Códice, Debrief) */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(16, 24, 32, 0.92);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-card {
+  border: 3px solid var(--color-terminal-green);
+  background: #0d141b;
+  padding: 30px 40px;
+  min-width: 450px;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 28px;
+  color: var(--color-terminal-green);
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.btn-retro {
+  background: transparent;
+  border: 2px solid var(--color-terminal-green);
+  color: var(--color-terminal-green);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  padding: 10px 24px;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-retro:hover {
+  background: var(--color-terminal-green);
+  color: var(--color-metal-dark);
+}
