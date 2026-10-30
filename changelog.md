@@ -5,20 +5,40 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ---
 
+## [0.2.0-phase2] - 2026-10-30
+
+### Added
+- **Hardware Computacional e ULA (RN-01, RN-04, RE-01..RE-05):**
+  - `Nibble.ts`: Value Object de 4 bits com validações, conversões bin/hex e indexação de bits.
+  - `ILogicGateStrategy.ts` & `XorGateStrategy.ts`: Estratégia extensível OCP calculando XOR bit a bit e Zero Flag (`ZF`).
+  - `AluEngine.ts`: Motor da ULA desacoplado de engine gráfica.
+  - `RegisterBank.ts`: Gestão didática dos registradores `REG_A`, `REG_B`, `RES` e rotação de máscaras desbloqueadas.
+  - `InstructionCycleTracker.ts`: FSM com avanço determinístico de estágios (`FETCH -> DECODE -> EXECUTE -> STORE`).
+- **Regras de Negócio e Combate (RN-02, RN-03, RN-05, RN-06):**
+  - `DamageCalculator.ts`: Absorção 1:1 `SHLD` antes de `HP` e mitigação de 80% em escudos binários ativos.
+  - `AmmoCapacitor.ts`: Consumo de munição e capacitor de emergência (regenera até 10 AMMO).
+  - `ScoreLedger.ts`: Pontuação por BITLING, OVERFLOW e bônus de eficiência lógica (`ZF=1`).
+  - `CodexTracker.ts`: Controle de conceitos pedagógicos descobertos e deduplicação de toasts contextuais.
+- **Kernel ECS e Aplicação:**
+  - `World.ts`: Registro leve de entidades com stores de componentes POD indexados e queries rápidas.
+  - `CombatComponents.ts`: Definições tipadas de Transform, Velocity, Collider, Health, Shield, BinaryLock, AiFsm, Weapon, etc.
+  - `EntityFactory.ts`: Fábrica para instanciar Player, Bitling, Overflow, LogicDoor, Terminal e Pickups.
+  - `EventBus.ts`: Barramento tipado Observer para desacoplar sistemas e UI.
+  - `GameStateMachine.ts`: Máquina de estados global (`BOOT` até `DEBRIEF`).
+  - `GameLoop.ts`: Loop desacoplado com Fixed Timestep (1/60s).
+- **Testes Unitários:**
+  - 40 testes automatizados passando em Node.js com cobertura limpa em `tests/unit/domain/**`, `tests/unit/ecs/**` e `tests/unit/app/**`.
+
+---
+
 ## [0.1.0-phase1] - 2026-10-30
 
 ### Added
 - **Protocolo de Gerenciamento de Contexto (Memory Bank):**
-  - `arquitetura.md`: Documentação viva das camadas de Clean Architecture, Hybrid ECS, pipeline de assets desacoplado e ADRs 001 a 003.
-  - `estado_atual.md`: Snapshot operacional com matriz de rastreabilidade para RFs, RNs e REs.
-  - `changelog.md`: Livro-razão cronológico de engenharia de software.
+  - `arquitetura.md`, `estado_atual.md`, `changelog.md`.
 - **Toolchain e Configurações de Qualidade:**
-  - `package.json`: Configurado com scripts `dev`, `build`, `typecheck`, `test`, `test:run`, `test:coverage`.
-  - `tsconfig.json`: TypeScript 5 estrito (`strict: true`, `noUncheckedIndexedAccess: true`, aliases `@domain`, `@ecs`, `@app`, `@infra`, `@presentation`).
-  - `vite.config.ts` e `vitest.config.ts`: Configurações de empacotamento e testes automatizados.
-  - `@types/node` e `@babylonjs/core`.
+  - `package.json`, `tsconfig.json`, `vite.config.ts`, `vitest.config.ts`.
 - **Camada de Domínio (Configurações):**
-  - `src/domain/config/GameBalance.ts`: Constantes de balanceamento (HP, Shield, PULSE-9, Cooldowns, Scores, Paleta oficial).
-  - `src/domain/config/PedagogicalCatalog.ts`: Catálogo pedagógico (RE-01 a RE-05 com toasts de até 140 chars e códice).
+  - `GameBalance.ts`, `PedagogicalCatalog.ts`.
 - **Testes Arquiteturais:**
-  - `tests/architecture/boundaries.test.ts`: Validador de fronteiras Clean Architecture assegurando zero dependências de DOM ou Babylon.js dentro de `src/domain` e `src/ecs`.
+  - `boundaries.test.ts`: Enforcing automático de Clean Architecture.
