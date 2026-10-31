@@ -8,15 +8,16 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 ## [Unreleased]
 
 ### Added
-- **Auditoria Técnica & Roteiro Passo a Passo (`docs/PLANO_REFATORACAO_E_VISUAL.md`):**
-  - Documento executável consolidando a revisão dos 4 pilares (Qualidade, Arquitetura, Performance, UX/Mecânicas), Matriz de Débito Técnico (`DT-01` a `DT-12`) e plano em 8 passos (`Fases A -> H`).
+- **Plano de Migração 2D Top-Down 3/4, Auditoria & Guia de Modelos (`docs/PLANO_REFATORACAO_E_VISUAL.md`):**
+  - Roteiro completo em 8 passos para resolução de `DT-01`..`DT-12` e transformação do jogo de FPS 3D (`Babylon.js`) para **Top-Down 2D 3/4 Tático** em `Canvas2D` Pixel-Perfect com **Fog of War / Linha de Visão 2D**, protagonista em pixel-art 3/4 + rifle `PULSE-9` 360° e mira livre no cursor.
+  - Tabela e tags em cada passo indicando qual modelo de IA utilizar (**Gemini 3.1 Pro / Claude Sonnet 4.6** vs **Gemini 3 Flash** e modelos de imagem `host_image` vs `gpt-image-2.5-sunburst`).
 - **Integração de Skills Visuais (`0x0funky/agent-sprite-forge`):**
   - Instalação local para Antigravity em `.agents/skills/` (`generate2dsprite`, `generate2dmap`, `codeart2d`, `video2dsprite`, `generate2dmedia`) + `skills-lock.json`.
   - Diagnóstico de ambiente validado via `forge_doctor.py` (`Python 3.12.3`, `numpy`, `Pillow`, `ffmpeg` prontos).
 
 ### Changed
 - **Memory Bank & Git Hygiene:**
-  - Atualizados `arquitetura.md` (`ADR-004`), `estado_atual.md` (backlog Sprint 2) e `.gitignore` (exclusão de `.forge/` e lockfiles `.~lock.*`).
+  - Atualizados `arquitetura.md` (`ADR-004` com arquitetura 2D + Fog of War), `estado_atual.md` (backlog Sprint 2 2D com modelos recomendados) e `.gitignore` (exclusão de `.forge/` e lockfiles `.~lock.*`).
 
 ---
 

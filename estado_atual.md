@@ -1,8 +1,8 @@
 # ESTADO ATUAL DO PROJETO — BREACH CORE
 
 **Última Atualização:** 2026-10-30  
-**Milestone Atual:** Sprint 2 — Hardening Arquitetural & Upgrade Visual (`agent-sprite-forge`) Planejado  
-**Status Geral:** 🟡 MVP 1.0.0 Funcional / Backlog de Refatoração Pós-Auditoria Documentado (`DT-01`..`DT-12`)  
+**Milestone Atual:** Sprint 2 Planejada — Migração 3D -> 2D Top-Down 3/4 (`Canvas2D` + Fog of War) & Upgrade Visual (`agent-sprite-forge`)  
+**Status Geral:** 🟡 MVP 1.0.0 Funcional / Plano `v2.0.0-2d` + Guia de Modelos por Tarefa Salvo (`DT-01`..`DT-12`)  
 
 ---
 
@@ -39,13 +39,13 @@
 
 ---
 
-## 3. Backlog Priorizado — Sprint 2 (`docs/PLANO_REFATORACAO_E_VISUAL.md`)
+## 3. Backlog Priorizado — Sprint 2 (`v2.0.0-2d` — `docs/PLANO_REFATORACAO_E_VISUAL.md`)
 
-- [ ] **Passo 1 (Blocker — `DT-01`, `DT-08`):** `SpatialCollisionIndex` para colisão/LoS dinâmica em `CellType.DOOR` + unificação de raycast `castHitscan()`.
-- [ ] **Passo 2 (Blocker — `DT-03`, `DT-04`):** Desbloqueio de máscaras `REG_A` nos terminais para solubilidade de `1111` em $\mathbb{F}_2^4$ + correção do congelamento de `#hudRegStatus` e mutação de `RES` ao mirar.
-- [ ] **Passo 3 (Blocker — `DT-02`, `DT-11`):** Eliminação do deadlock em `GameState.PAUSED` (`PauseModal`, `ControlsModal`, `CodexModal`) + filtro `e.repeat` e `contextmenu` em `BrowserInputAdapter`.
-- [ ] **Passo 4 (Crítica — `DT-05`, `DT-12`):** Extração da *God Closure* `main.ts` para `GameSession` + `IEcsSystem`, correção da condição de vitória (`RN-05`) e blindagem de `src/ecs` em `boundaries.test.ts`.
-- [ ] **Passo 5 (Crítica — `DT-07`, `DT-08`):** Projéteis reais de plasma do `OVERFLOW` (`14 u/s`, `RF-21`) e validação estrita do bônus `ZF=1` no 1º pulso.
-- [ ] **Passo 6 (Crítica — `DT-06`, `DT-09`):** `Mesh.MergeMeshes`, materiais *Flyweight* e *Object Pool* no `BabylonRenderAdapter` + cache de queries no `World` e `HudStateDiffer`.
-- [ ] **Passo 7 (Alta — `DT-10`):** Geração, QC (`--strict-qc`) e integração de spritesheets/texturas pixel-art RGBA com `0x0funky/agent-sprite-forge` (`.agents/skills/`) via `ForgeSpriteAssetAdapter`.
-- [ ] **Passo 8 (Qualidade):** Novos testes unitários/integração Vitest + suíte E2E Playwright e sincronização final do Memory Bank.
+- [ ] **Passo 1 `[Gemini 3.1 Pro]` (Blocker — `DT-01`, `DT-08`):** `SpatialCollisionIndex` para colisão/LoS/Fog dinâmica em `CellType.DOOR` + unificação de raycast 2D `castHitscan()`.
+- [ ] **Passo 2 `[Gemini 3 Flash]` (Blocker — `DT-03`, `DT-04`):** Desbloqueio de máscaras `REG_A` nos terminais para solubilidade de `1111` em $\mathbb{F}_2^4$ + separação de `#hudRegA`, `#hudTargetRegB` e `#hudLastAluOp`.
+- [ ] **Passo 3 `[Gemini 3 Flash]` (Blocker — `DT-02`, `DT-11`):** Fim do deadlock em `PAUSED` (`PauseModal`, `ControlsModal`, `OnboardingModal`, `CodexModal`) + input 2D por cursor livre no `<canvas>` (sem Pointer Lock), `e.repeat` e `AbortController`.
+- [ ] **Passo 4 `[Gemini 3.1 Pro]` (Crítica — `DT-05`, `DT-09`, `DT-12`):** Extração da *God Closure* `main.ts` para `GameSession` + `IEcsSystem` + `Camera2D` (*cursor lead* + *screen-shake*), cache de queries em `World.ts`, vitória (`RN-05`) e blindagem de `src/ecs` em `boundaries.test.ts`.
+- [ ] **Passo 5 `[Gemini 3 Flash]` (Crítica — `DT-07`, `DT-08`):** Projéteis físicos de plasma do `OVERFLOW` (`14 u/s`, `RF-21`) visíveis em 2D e validação estrita do bônus `ZF=1` no 1º pulso.
+- [ ] **Passo 6 `[Gemini 3.1 Pro]` (Migração 2D — `DT-06`):** Remoção de `@babylonjs/core` (~5 MB) e criação de `Canvas2dRenderAdapter` (Offscreen Tilemap 3/4, `Z-sort`, protagonista 4 direções + rifle `PULSE-9` 360°, badges diegéticos `[REG_B]`) + `FogOfWarVisibility2D` (sombras reais de paredes/portas lógicas).
+- [ ] **Passo 7 `[Gemini 3 Flash + host_image / gpt-image-2.5-sunburst]` (Visual 2D — `DT-10`):** Produção, quantização na paleta oficial e QA (`--strict-qc`) de sprites 3/4 (Protagonista, `PULSE-9`, `BITLING`, `OVERFLOW`), tileset PCB e VFX (`codeart2d`) via `ForgeSpriteAssetAdapter`.
+- [ ] **Passo 8 `[Gemini 3 Flash]` (Qualidade):** Testes Vitest (`Camera2D`, `FogOfWarVisibility2D`, `GameplayLoop`) + suíte E2E Playwright 2D e fechamento do Memory Bank `v2.0.0-2d`.
