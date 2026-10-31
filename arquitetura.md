@@ -113,3 +113,11 @@ flowchart TD
 - **Contexto:** Assets conceituais existentes (`assets/*.jpeg`) possuem fundo quadriculado e foram projetados como inspiração visual.
 - **Decisão:** Utilizar `ProceduralPixelAssetAdapter` para gerar dinamicamente texturas e sprites pixel-art RGBA com amostragem `NEAREST_SAMPLINGMODE`.
 - **Consequências:** Elimina bloqueio visual de assets, permitindo plugar `.png` finais sem alterar regras de negócio ou de gameplay.
+
+### ADR-004: Hardening Pós-Auditoria e Pipeline Visual com `agent-sprite-forge` (Sprint 2)
+- **Contexto:** A auditoria técnica pós-MVP (`docs/PLANO_REFATORACAO_E_VISUAL.md`) identificou acoplamento ascendente em `src/ecs/systems/* -> @app/ports/*`, vazamentos de `StandardMaterial` na VRAM em `BabylonRenderAdapter`, ausência de índice dinâmico de colisão para portas lógicas e limitações visuais nos sprites procedurais básicos.
+- **Decisão:**
+  1. Isolar sistemas ECS atrás de `IEcsSystem` e `SpatialCollisionIndex`, movendo a orquestração de sessão para `GameSession` (`src/application/`) e reforçando `tests/architecture/boundaries.test.ts` sobre `src/ecs/`.
+  2. Unificar paredes estáticas com `Mesh.MergeMeshes`, materiais *Flyweight* e *Object Pool* determinístico para impactos/projéteis.
+  3. Integrar o pacote de skills `0x0funky/agent-sprite-forge` (`.agents/skills/`) para produção, *chroma-keying* (`#FF00FF`), quantização de paleta (`#101820`, `#39FF88`, `#00D9FF`, `#FF9D36`) e validação QC (`--strict-qc`) de spritesheets RGBA e texturas modulares em `public/assets/forge/`, consumidas via `ForgeSpriteAssetAdapter` (`IAssetPort`) com *fallback* procedural para testes headless.
+- **Consequências:** Preserva 100% de testabilidade sem WebGL no Vitest, zera *leaks* de VRAM/DOM thrashing e eleva a fidelidade visual pixel-art 90s mantendo `NEAREST_SAMPLINGMODE`.

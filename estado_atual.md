@@ -1,8 +1,8 @@
 # ESTADO ATUAL DO PROJETO — BREACH CORE
 
 **Última Atualização:** 2026-10-30  
-**Milestone Atual:** Fase 4 — Polimento & Finalização Concluída (MVP 1.0.0 Completo)  
-**Status Geral:** 🟢 Aprovado / Produção Pronta  
+**Milestone Atual:** Sprint 2 — Hardening Arquitetural & Upgrade Visual (`agent-sprite-forge`) Planejado  
+**Status Geral:** 🟡 MVP 1.0.0 Funcional / Backlog de Refatoração Pós-Auditoria Documentado (`DT-01`..`DT-12`)  
 
 ---
 
@@ -39,6 +39,13 @@
 
 ---
 
-## 3. Próxima Ação
+## 3. Backlog Priorizado — Sprint 2 (`docs/PLANO_REFATORACAO_E_VISUAL.md`)
 
-- Repositório sincronizado e pronto para execução no navegador desktop via `npm run dev`.
+- [ ] **Passo 1 (Blocker — `DT-01`, `DT-08`):** `SpatialCollisionIndex` para colisão/LoS dinâmica em `CellType.DOOR` + unificação de raycast `castHitscan()`.
+- [ ] **Passo 2 (Blocker — `DT-03`, `DT-04`):** Desbloqueio de máscaras `REG_A` nos terminais para solubilidade de `1111` em $\mathbb{F}_2^4$ + correção do congelamento de `#hudRegStatus` e mutação de `RES` ao mirar.
+- [ ] **Passo 3 (Blocker — `DT-02`, `DT-11`):** Eliminação do deadlock em `GameState.PAUSED` (`PauseModal`, `ControlsModal`, `CodexModal`) + filtro `e.repeat` e `contextmenu` em `BrowserInputAdapter`.
+- [ ] **Passo 4 (Crítica — `DT-05`, `DT-12`):** Extração da *God Closure* `main.ts` para `GameSession` + `IEcsSystem`, correção da condição de vitória (`RN-05`) e blindagem de `src/ecs` em `boundaries.test.ts`.
+- [ ] **Passo 5 (Crítica — `DT-07`, `DT-08`):** Projéteis reais de plasma do `OVERFLOW` (`14 u/s`, `RF-21`) e validação estrita do bônus `ZF=1` no 1º pulso.
+- [ ] **Passo 6 (Crítica — `DT-06`, `DT-09`):** `Mesh.MergeMeshes`, materiais *Flyweight* e *Object Pool* no `BabylonRenderAdapter` + cache de queries no `World` e `HudStateDiffer`.
+- [ ] **Passo 7 (Alta — `DT-10`):** Geração, QC (`--strict-qc`) e integração de spritesheets/texturas pixel-art RGBA com `0x0funky/agent-sprite-forge` (`.agents/skills/`) via `ForgeSpriteAssetAdapter`.
+- [ ] **Passo 8 (Qualidade):** Novos testes unitários/integração Vitest + suíte E2E Playwright e sincronização final do Memory Bank.

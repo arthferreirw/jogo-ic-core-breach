@@ -5,6 +5,21 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ---
 
+## [Unreleased]
+
+### Added
+- **Auditoria Técnica & Roteiro Passo a Passo (`docs/PLANO_REFATORACAO_E_VISUAL.md`):**
+  - Documento executável consolidando a revisão dos 4 pilares (Qualidade, Arquitetura, Performance, UX/Mecânicas), Matriz de Débito Técnico (`DT-01` a `DT-12`) e plano em 8 passos (`Fases A -> H`).
+- **Integração de Skills Visuais (`0x0funky/agent-sprite-forge`):**
+  - Instalação local para Antigravity em `.agents/skills/` (`generate2dsprite`, `generate2dmap`, `codeart2d`, `video2dsprite`, `generate2dmedia`) + `skills-lock.json`.
+  - Diagnóstico de ambiente validado via `forge_doctor.py` (`Python 3.12.3`, `numpy`, `Pillow`, `ffmpeg` prontos).
+
+### Changed
+- **Memory Bank & Git Hygiene:**
+  - Atualizados `arquitetura.md` (`ADR-004`), `estado_atual.md` (backlog Sprint 2) e `.gitignore` (exclusão de `.forge/` e lockfiles `.~lock.*`).
+
+---
+
 ## [1.0.0-mvp] - 2026-10-30
 
 ### Added

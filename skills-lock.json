@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "codeart2d": {
+      "source": "0x0funky/agent-sprite-forge",
+      "sourceType": "github",
+      "skillPath": "skills/codeart2d/SKILL.md",
+      "computedHash": "19d1169dbf56c46457802128dcd5c4d331cbc25e65a0082f4b4871e71db416c2"
+    },
+    "generate2dmap": {
+      "source": "0x0funky/agent-sprite-forge",
+      "sourceType": "github",
+      "skillPath": "skills/generate2dmap/SKILL.md",
+      "computedHash": "879250889ec1248041cf8dcd427a358351ec66ecf97c997618037f75fd8e15ef"
+    },
+    "generate2dmedia": {
+      "source": "0x0funky/agent-sprite-forge",
+      "sourceType": "github",
+      "skillPath": "skills/generate2dmedia/SKILL.md",
+      "computedHash": "4e76e45742452fef3c2efe1d34da18e0c8fc6fed3213a1e5de5e64ba2d884d15"
+    },
+    "generate2dsprite": {
+      "source": "0x0funky/agent-sprite-forge",
+      "sourceType": "github",
+      "skillPath": "skills/generate2dsprite/SKILL.md",
+      "computedHash": "813c8aa67b9e3d685389c3737735ef7fdc811d06b16ed77215846cc2a85537a1"
+    },
+    "video2dsprite": {
+      "source": "0x0funky/agent-sprite-forge",
+      "sourceType": "github",
+      "skillPath": "skills/video2dsprite/SKILL.md",
+      "computedHash": "a3bdf619c4dadc19e3e649a7b0d552eae21832a76fbf2e813d567bca1aec2ac0"
+    }
+  }
+}
